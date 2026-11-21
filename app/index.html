@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Cover Lab — multi-panel cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <aside class="controls">
+    <header class="brand">
+      <h1>Neon Cover Lab</h1>
+      <p>Your photos + a caption → multi-panel cover art, exported as a PNG. Everything happens on your machine; photos are never uploaded.</p>
+    </header>
+
+    <section class="group">
+      <h2>1 · Photos</h2>
+      <label class="upload-btn">Add your photos
+        <input id="photo-files" type="file" accept="image/*" multiple>
+      </label>
+      <div id="tray" class="tray" aria-label="Photo tray"></div>
+      <div class="row">
+        <button id="spread" type="button">Spread across panels</button>
+        <button id="fill" type="button">Fill all panels</button>
+      </div>
+      <p class="hint">Click a panel on the cover, then a photo to place it. Drag the photo inside its panel, scroll to zoom.</p>
+    </section>
+
+    <section class="group">
+      <h2>2 · Layout &amp; size</h2>
+      <div id="layout-picker" class="picker">
+        <button type="button" data-value="grid9" class="active">Grid · 9</button>
+        <button type="button" data-value="hero3">Hero + 3</button>
+        <button type="button" data-value="quad">Quad · 4</button>
+        <button type="button" data-value="full">Full bleed</button>
+      </div>
+      <div id="size-picker" class="picker">
+        <button type="button" data-value="square">1080 × 1080</button>
+        <button type="button" data-value="portrait">1080 × 1350</button>
+        <button type="button" data-value="wide" class="active">1920 × 1080</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>3 · Colour grade</h2>
+      <div id="grade-picker" class="picker grades">
+        <button type="button" data-value="sunset" class="active"><span class="swatch sunset"></span>Sunset</button>
+        <button type="button" data-value="neon"><span class="swatch neon"></span>Neon</button>
+        <button type="button" data-value="dusk"><span class="swatch dusk"></span>Dusk</button>
+        <button type="button" data-value="gold"><span class="swatch gold"></span>Gold</button>
+      </div>
+      <label class="check"><input id="grain" type="checkbox" checked> Film grain &amp; vignette</label>
+    </section>
+
+    <section class="group">
+      <h2>4 · Caption</h2>
+      <label>Title <input id="caption" type="text" maxlength="42" value="Neon Heat"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="60" value="Vice Shores · Original Cover Art"></label>
+      <label>Panel zoom — <span id="panel-name">Panel 1</span>
+        <input id="zoom" type="range" min="100" max="300" value="100">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>5 · Export PNG</h2>
+      <div class="row exports">
+        <button type="button" class="export-btn" data-size="square">1080 × 1080</button>
+        <button type="button" class="export-btn" data-size="portrait">1080 × 1350</button>
+        <button type="button" class="export-btn" data-size="wide">1920 × 1080</button>
+      </div>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+  <section class="stage">
+    <canvas id="cover" width="1920" height="1080" aria-label="Live cover preview"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
